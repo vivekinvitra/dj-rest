@@ -1,8 +1,12 @@
 {% extends "homebase.html" %}
 
-{% block title %} Home Page {% endblock %}
-{% block keywords %} {% endblock %}
-{% block description %} {% endblock %}
+{% block title %} {{ setting.title }} {% endblock %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+{% block description %} {{ setting.description }} {% endblock %}
+
+{% block head %}
+    <link rel="icon" type="image/png" href="{{ setting.icon.url }}"/>
+{% endblock %}
 
 {% block sidebar %}
     {% include 'sidebar.html' %}

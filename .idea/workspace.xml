@@ -6,6 +6,8 @@
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/product/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/product/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/product/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/product/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python_django_restaurant_website_project/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/python_django_restaurant_website_project/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python_django_restaurant_website_project/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/python_django_restaurant_website_project/urls.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,7 +115,7 @@
       <updated>1617629303296</updated>
       <workItem from="1617629306519" duration="692000" />
       <workItem from="1617630332152" duration="2668000" />
-      <workItem from="1620132431185" duration="10208000" />
+      <workItem from="1620132431185" duration="11758000" />
     </task>
     <servers />
   </component>

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/django-restaurant-website-project.iml" filepath="$PROJECT_DIR$/.idea/django-restaurant-website-project.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/python-django-restaurant-website-project.iml" filepath="$PROJECT_DIR$/.idea/python-django-restaurant-website-project.iml" />
     </modules>
   </component>
 </project>

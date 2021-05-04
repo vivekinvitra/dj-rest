@@ -2,18 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f73adcd6-3c7a-4275-a314-e4b2fb1ad1f7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/django-restaurant-website-project.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django_restaurant_website_project/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/django_restaurant_website_project/asgi.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/django_restaurant_website_project/settings.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/django_restaurant_website_project/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/django_restaurant_website_project/wsgi.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/home/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/home/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/home/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/home/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/manage.py" beforeDir="false" afterPath="$PROJECT_DIR$/manage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/product/admin.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,7 +112,7 @@
       <updated>1617629303296</updated>
       <workItem from="1617629306519" duration="692000" />
       <workItem from="1617630332152" duration="2668000" />
-      <workItem from="1620132431185" duration="2628000" />
+      <workItem from="1620132431185" duration="3765000" />
     </task>
     <servers />
   </component>

@@ -687,6 +687,16 @@ input[type="date" i] {
   border-bottom: 2px solid #ec1d25;
 }
 
+.menubutton{
+  color: white;
+  margin-left: 25px;
+  border-bottom: 2px solid #ec1d25;
+}
+
+.menubutton:hover{
+  color: #ec1d25;
+}
+
 @media (max-width: 1200px) {
   .main_menu > li {
     margin-left: 4px;

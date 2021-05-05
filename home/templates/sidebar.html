@@ -3,21 +3,33 @@
 		<!-- Button Hide sidebar -->
 		<button class="btn-hide-sidebar ti-close color0-hov trans-0-4"></button>
 
-		<!-- - -->
-		<ul class="menu-sidebar p-t-95 p-b-70">
+        {% load mptt_tags %}
+        <ul class="p-t-95 p-b-70 nav flex-column flex-nowrap overflow-hidden">
+            {% recursetree category %}
+                <li class="t-center m-b-13 nav-item">
+                    <a class="nav-link collapsed" {% if not node.is_leaf_node %} href="#" data-toggle="collapse" data-target="#{{ node.id }}" {% else %} href="/category/{{ node.slug }}" {% endif %}>
+                        <span>{{ node.title }}</span>
+                    </a>
+                </li>
+                {% if not node.is_leaf_node %}
+                    <div class="collapse" id="{{ node.id }}" aria-expanded="false">
+                        <ul>
+                            <li class="t-center m-b-13 nav-item">
+                                <a href="/category/{{ node.slug }}>
+                                    <span>{{ children }}</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                {% endif %}
 
-			<li class="t-center m-b-13">
-				<a href="/" class="txt19">Home</a>
-			</li>
+            {% endrecursetree %}
 
-
-			<li class="t-center">
-				<!-- Button3 -->
-				<a href="#" class="btn3 flex-c-m size13 txt11 trans-0-4 m-l-r-auto">
-					Reservation
-				</a>
-			</li>
-
-		</ul>
-
+            <li class="t-center">
+                <!-- Button3 -->
+                <a href="#" style="margin-top: 48px;" class="btn3 flex-c-m size13 txt11 trans-0-4 m-l-r-auto">
+                    Reservation
+                </a>
+            </li>
+        </ul>
 	</aside>

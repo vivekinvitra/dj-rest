@@ -87,7 +87,12 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   src: url('../fonts/notosans/NotoSans-Regular.ttf'); 
 }
 
-
+.nav-link[data-toggle].collapsed:after {
+    content: " ▾";
+}
+.nav-link[data-toggle]:not(.collapsed):after {
+    content: " ▴";
+}
 
 /*[ RESTYLE TAG ]
 ///////////////////////////////////////////////////////////
@@ -719,8 +724,6 @@ input[type="date" i] {
     height: 100px;
   }
 }
-
-
 
 
 /*[ Sidebar ]

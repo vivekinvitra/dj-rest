@@ -1,7 +1,6 @@
-from django.db import models
-
-# Create your models here.
 from ckeditor_uploader.fields import RichTextUploadingField
+from django.db import models
+# Create your models here.
 from django.forms import ModelForm, TextInput, Textarea
 
 

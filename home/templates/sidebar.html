@@ -3,19 +3,45 @@
 		<!-- Button Hide sidebar -->
 		<button class="btn-hide-sidebar ti-close color0-hov trans-0-4"></button>
 
+        <h2 class="t-center nav flex-column flex-nowrap overflow-hidden" style="margin-top: 50px; padding-bottom: 50px;">MENU</h2>
+
+        <ul class="nav flex-column flex-nowrap overflow-hidden hide-menu" style="padding-top: 10px;">
+            <li class="t-center m-b-13 nav-item" style="text-transform: uppercase;">
+                <a href="/">Home</a>
+            </li>
+
+            <li class="t-center m-b-13 nav-item" style="text-transform: uppercase;">
+                <a href="/aboutus">About Us</a>
+            </li>
+
+            <li class="t-center m-b-13 nav-item" style="text-transform: uppercase;">
+                <a href="/references">References</a>
+            </li>
+
+            <li class="t-center m-b-13 nav-item" style="text-transform: uppercase;">
+                <a href="/contact">Contact</a>
+            </li>
+
+            <li class="t-center m-b-13 nav-item" style="text-transform: uppercase;">
+                <a href="/faq">FAQ</a>
+            </li>
+
+            <hr style="margin-top: 50px">
+        </ul>
+
         {% load mptt_tags %}
-        <ul class="p-t-95 p-b-70 nav flex-column flex-nowrap overflow-hidden">
+        <ul class="p-b-70 nav flex-column flex-nowrap overflow-hidden menu-low">
             {% recursetree category %}
-                <li class="t-center m-b-13 nav-item">
-                    <a class="nav-link collapsed" {% if not node.is_leaf_node %} href="#" data-toggle="collapse" data-target="#{{ node.id }}" {% else %} href="/category/{{ node.slug }}" {% endif %}>
+                <li class="t-center nav-item" style="text-transform: uppercase;">
+                    <a class="nav-link collapsed" {% if not node.is_leaf_node %} href="#" data-toggle="collapse" data-target="#{{ node.id }}" {% else %} href="/category/{{ node.id }}/{{ node.slug }}" {% endif %}>
                         <span>{{ node.title }}</span>
                     </a>
                 </li>
                 {% if not node.is_leaf_node %}
                     <div class="collapse" id="{{ node.id }}" aria-expanded="false">
                         <ul>
-                            <li class="t-center m-b-13 nav-item">
-                                <a href="/category/{{ node.slug }}>
+                            <li style="text-transform: uppercase;" class="t-center nav-item">
+                                <a href="/category{{ node.id }}//{{ node.slug }}>
                                     <span>{{ children }}</span>
                                 </a>
                             </li>

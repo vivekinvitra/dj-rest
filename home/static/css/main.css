@@ -94,6 +94,14 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
     content: " ▴";
 }
 
+.hide-menu{
+  display: none;
+}
+
+.menu-low{
+   padding-top: 50px;
+}
+
 /*[ RESTYLE TAG ]
 ///////////////////////////////////////////////////////////
 */
@@ -518,6 +526,10 @@ input[type="date" i] {
   box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
 }
 
+.header-fixed .menubutton{
+  color: #222222;
+}
+
 /*[ Logo ]
 -----------------------------------------------------------
 */
@@ -716,6 +728,14 @@ input[type="date" i] {
 }
 
 @media (max-width: 992px) {
+  .hide-menu{
+    display: block;
+  }
+
+  .menu-low{
+   padding-top: 25px;
+  }
+
   .wrap_menu {
     display: none;
   }

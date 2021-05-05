@@ -3,11 +3,13 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
 from home.models import Setting, ContactForm, ContactFormMessage
+from product.models import Product
 
 
 def index(request):
+    sliderData = Product.objects.all()[:3]
     setting = Setting.objects.get(pk=1)
-    context = {'setting': setting, 'page': 'home'}
+    context = {'setting': setting, 'page': 'home', 'sliderData': sliderData}
     return render(request, 'index.html', context)
 
 
@@ -24,7 +26,6 @@ def references(request):
 
 
 def contact(request):
-
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():

@@ -15,7 +15,7 @@
 {% block content %}
     {% load static %}
     <!-- Title Page -->
-	<section class="bg-title-page flex-c-m p-t-160 p-b-80 p-l-15 p-r-15" style="background-image: url({% static 'images/bg-title-page-03.jpg' %});">
+	<section class="bg-title-page flex-c-m p-t-160 p-b-80 p-l-15 p-r-15" style="background-image: url({{ categorydata.image.url }});">
 		<h2 class="tit6 t-center">
             {{ categorydata.title }}
 		</h2>

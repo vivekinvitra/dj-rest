@@ -107,6 +107,9 @@
         $('.video-mo-01').css('opacity','0');
     });
     
+    // Carousel Slider Configuration
+
+    $('#carouselExampleControls').carousel();
 
     /*[ Fixed Header ]
     ===========================================================*/

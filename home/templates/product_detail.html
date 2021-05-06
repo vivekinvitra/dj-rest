@@ -1,0 +1,154 @@
+{% extends "homebase.html" %}
+
+{% block title %} {{ product.title }} {% endblock %}
+{% block keywords %} {{ product.keywords }} {% endblock %}
+{% block description %} {{ product.description }} {% endblock %}
+
+{% block head %}
+    <link rel="icon" type="image/png" href="{{ setting.icon.url }}"/>
+{% endblock %}
+
+{% block sidebar %}
+    {% include 'sidebar.html' %}
+{% endblock %}
+
+{% block content %}
+    {% load static %}
+    <!-- Title Page -->
+	<section class="bg-title-page flex-c-m p-t-160 p-b-80 p-l-15 p-r-15" style="background-image: url({{ product.image.url }});">
+		<h2 class="tit6 t-center">
+            {{ product.title }}
+		</h2>
+	</section>
+
+    <section class="bg2-pattern p-t-116 t-center p-l-15 p-r-15">
+        <div class="container">
+			<div class="map bo8 bo-rad-10 of-hidden" style="max-height: 640px">
+                <div style="width:100%;">
+                    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+
+                            <div class="carousel-item active">
+                              <img class="d-block w-100" src="{{ product.image.url }}" alt="First slide">
+                            </div>
+
+                            {% for rs in images %}
+                                <div class="carousel-item">
+                                  <img class="d-block w-100" src="{{ rs.image.url }}" alt="First slide">
+                                </div>
+                            {% endfor %}
+
+                            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+		</div>
+	</section>
+
+    <section class="bg2-pattern p-t-116 p-b-110 t-center p-l-15 p-r-15">
+        <h4 class="t-center size32 m-l-r-auto p-b-50" style="word-wrap: break-word; width: 100%;">
+            {{ product.description }}
+		</h4>
+		<p class="t-center size32 m-l-r-auto" style="word-wrap: break-word; width: 100%;">
+            {{ product.detail|safe }}
+		</p>
+        <h5 class="t-center size32 m-l-r-auto p-t-50" style="word-wrap: break-word; width: 100%;">
+            Price: ${{ product.price }}
+		</h5>
+        <h6 class="t-center size32 m-l-r-auto p-t-50" style="word-wrap: break-word; width: 100%;">
+            Rate: 5
+		</h6>
+        <div class="text-blo4 p-t-70" style="max-width: 60%; margin: auto">
+            <hr>
+            <p style="width: 100%; padding-bottom: 25px; padding-top: 25px; text-align: left">
+                by Admin
+                <span class="m-r-6 m-l-4">|</span>
+                28 December, 2018
+                <span class="m-r-6 m-l-4">|</span>
+                Cooking, Food
+            </p>
+            <p style="width: 100%; padding-bottom: 25px; text-align: left">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget mi sem. Nulla facilisi. Sed ultricies eros a nibh tempus, in sodales mi vestibulum. Nullam quis dui ac nisl ultrices euismod et sit amet urna. Morbi semper sapien quis ex tempor, sit amet scelerisque eros rhoncus. Cras scelerisque auctor gravida. Nunc fermentum luctus rhoncus. Nulla vulputate fermentum convallis. In quis pellentesque tortor. Cras metus nibh, gravida vitae ante vel, finibus semper tellus. Nulla vel tincidunt magna. Morbi tempor velit lectus, eu commodo quam volutpat vitae.
+            </p>
+        </div>
+	</section>
+
+	<section class="section-contact bg1-pattern p-t-90 p-b-113">
+		<div class="container">
+            <div class="m-l-r-auto" style="display: flex; flex-wrap: wrap;">
+
+                <form class="wrap-form-reservation size22 m-l-r-auto" method="post" action="">
+                    <div class="row">
+                        <h4 class="t-center txt33 p-b-14" style="width: 100%">
+                            Leave a Comment
+                        </h4>
+
+                        <p class="t-center" style="width: 100%; padding-bottom: 25px">
+                            Your email address will not be published. Required fields are marked *
+                        </p>
+
+                        <div class="col-md-4">
+                            <span class="txt9">
+                                Name
+                            </span>
+                            <div class="wrap-inputemail size12 bo2 bo-rad-10 m-t-3 m-b-23">
+                                <input class="bo-rad-10 sizefull txt10 p-l-20" type="text" name="name" placeholder="Name & Surname *">
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <span class="txt9">
+                                Email
+                            </span>
+                            <div class="wrap-inputemail size12 bo2 bo-rad-10 m-t-3 m-b-23">
+                                <input class="bo-rad-10 sizefull txt10 p-l-20" type="text" name="email" placeholder="E-mail Address *">
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <span class="txt9">
+                                Rate
+                            </span>
+                            <div class="wrap-inputemail size12 bo2 bo-rad-10 m-t-3 m-b-23">
+                                <div class="bo-rad-10 sizefull txt10 p-t-13" style="padding-left: 20px">
+                                    1 2 3 4 5
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <span class="txt9">
+                                Comment
+                            </span>
+                            <textarea class="bo-rad-10 size35 bo2 txt10 p-l-20 p-t-15 m-b-10 m-t-3" name="commentent" placeholder="Your Comment..."></textarea>
+                        </div>
+                    </div>
+                    <div class="wrap-btn-booking flex-c-m m-t-13">
+                        <!-- Button3 -->
+                        <button type="submit" class="btn3 flex-c-m size36 txt11 trans-0-4" style="padding-left: 10px; padding-right: 10px;">
+                            Post Comment
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+		</div>
+	</section>
+
+{% endblock %}
+
+{% block body %}
+
+{% endblock %}
+
+{% block footer %}
+
+{% endblock %}

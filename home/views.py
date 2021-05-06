@@ -3,7 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
 from home.models import Setting, ContactForm, ContactFormMessage
-from product.models import Product, Category
+from product.models import Product, Category, Images
 
 
 def index(request):
@@ -59,8 +59,18 @@ def faq(request):
 
 
 def category_products(request, id, slug):
+    setting = Setting.objects.get(pk=1)
     products = Product.objects.filter(category_id=id)
     category = Category.objects.all()
     categorydata = Category.objects.get(pk=id)
-    context = {'products': products, 'category': category, 'categorydata': categorydata}
+    context = {'setting': setting, 'products': products, 'category': category, 'categorydata': categorydata}
     return render(request, 'products.html', context)
+
+
+def product_detail(request, id, slug):
+    setting = Setting.objects.get(pk=1)
+    product = Product.objects.get(pk=id)
+    category = Category.objects.all()
+    images = Images.objects.filter(product_id=id)
+    context = {'setting': setting, 'category': category, 'product': product, 'images': images}
+    return render(request, 'product_detail.html', context)

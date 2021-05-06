@@ -10,7 +10,9 @@ def index(request):
     sliderData = Product.objects.all()[:3]
     setting = Setting.objects.get(pk=1)
     category = Category.objects.all()
-    context = {'setting': setting, 'category': category, 'page': 'home', 'sliderData': sliderData}
+    ourfavorites = Product.objects.all()[:3]
+    ourlatestdeliciousfoods = Product.objects.all().order_by('-id')[:3]
+    context = {'setting': setting, 'category': category, 'page': 'home', 'sliderData': sliderData, 'ourfavorites': ourfavorites, 'ourlatestdeliciousfoods': ourlatestdeliciousfoods}
     return render(request, 'index.html', context)
 
 

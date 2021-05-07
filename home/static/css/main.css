@@ -164,6 +164,16 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   box-shadow: 0 4px 30px rgba(0,0,0,.05);
 }
 
+.form-control:focus {
+  box-shadow: none;
+}
+
+.form-control-underlined {
+  border-width: 0;
+  border-bottom-width: 1px;
+  border-radius: 0;
+  padding-left: 0;
+}
 
 /*[ RESTYLE TAG ]
 ///////////////////////////////////////////////////////////

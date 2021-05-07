@@ -1,0 +1,69 @@
+{% extends "homebase.html" %}
+
+{% block title %} {{ setting.title }} {% endblock %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+{% block description %} {{ setting.description }} {% endblock %}
+
+{% block head %}
+    <link rel="icon" type="image/png" href="{{ setting.icon.url }}"/>
+{% endblock %}
+
+{% block sidebar %}
+    {% include 'sidebar.html' %}
+{% endblock %}
+
+{% block content %}
+    {% load static %}
+    <!-- Title Page -->
+	<section class="bg-title-page flex-c-m p-t-160 p-b-80 p-l-15 p-r-15" style="background-image: url({% static 'images/bg-title-page-01.jpg' %});">
+		<h2 class="tit6 t-center">
+            Search Results
+		</h2>
+	</section>
+
+	<section class="bg2-pattern p-t-116 p-b-110 t-center p-l-15 p-r-15">
+		<div class="container">
+            <div class="m-l-r-auto" style="display: flex; flex-wrap: wrap;">
+
+                {% for rs in products %}
+                <!-- Block3 -->
+                <div class="blo3 flex-w flex-col-l-sm m-b-70 m-l-r-auto" style="width: 30%;">
+                    <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
+                        <a href="/product/{{ rs.id }}/{{ rs.slug }}"><img src="{{ rs.image.url }}" alt="IMG-MENU"></a>
+                    </div>
+
+                    <div class="text-blo3 size21 flex-col-l-m">
+                        <a href="/product/{{ rs.id }}/{{ rs.slug }}" class="txt21 m-b-3">
+                            {{ rs.title }}
+                        </a>
+                        <div class="txt21 m-b-3">
+                            <i class="fa fa-star{% if rs.rate < 1 %}-o empty{% endif %}"></i>
+                            <i class="fa fa-star{% if rs.rate < 2  %}-o empty{% endif %}"></i>
+                            <i class="fa fa-star{% if rs.rate < 3  %}-o empty{% endif %}"></i>
+                            <i class="fa fa-star{% if rs.rate < 4  %}-o empty{% endif %}"></i>
+                            <i class="fa fa-star{% if rs.rate < 5  %}-o empty{% endif %}"></i>
+                        </div>
+                        <span class="txt23" style="word-wrap: break-word; width: 100%; text-align: left;">
+                            {{ rs.description }}
+                        </span>
+
+                        <span class="txt22 m-t-20">
+                            ${{ rs.price }}
+                        </span>
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+		</div>
+	</section>
+
+{% endblock %}
+
+{% block body %}
+
+{% endblock %}
+
+{% block footer %}
+
+{% endblock %}

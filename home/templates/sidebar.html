@@ -3,8 +3,10 @@
 		<!-- Button Hide sidebar -->
 		<button class="btn-hide-sidebar ti-close color0-hov trans-0-4"></button>
 
+        <!-- Menu Label -->
         <h2 class="t-center nav flex-column flex-nowrap overflow-hidden" style="margin-top: 50px; padding-bottom: 50px;">MENU</h2>
 
+        <!-- Main Menu -->
         <ul class="nav flex-column flex-nowrap overflow-hidden hide-menu" style="padding-top: 10px;">
             <li class="t-center m-b-13 nav-item" style="text-transform: uppercase;">
                 <a href="/">Home</a>
@@ -29,6 +31,7 @@
             <hr style="margin-top: 50px">
         </ul>
 
+        <!-- Categories -->
         {% load mptt_tags %}
         <ul class="p-b-70 nav flex-column flex-nowrap overflow-hidden menu-low">
             {% recursetree category %}
@@ -51,11 +54,20 @@
 
             {% endrecursetree %}
 
+        <!-- Search Box -->
             <li class="t-center">
-                <!-- Button3 -->
-                <a href="#" style="margin-top: 48px;" class="btn3 flex-c-m size13 txt11 trans-0-4 m-l-r-auto">
-                    Reservation
-                </a>
+                <form action="/search/" method="POST">
+                    {% csrf_token %}
+                    <div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4" style="width: 80%; margin-left:auto; margin-right: auto; margin-top: 50px;">
+                        <div class="input-group">
+                            <input name="query" type="search" placeholder="What're you searching for?" aria-describedby="button-addon1" class="form-control border-0 bg-light">
+                            <div class="input-group-append">
+                                <button id="button-addon1" type="submit" class="btn btn-link text-primary"><i class="fa fa-search" style="color: #ec1d25;"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </li>
+
         </ul>
 	</aside>

@@ -64,28 +64,53 @@
             Price: ${{ product.price }}
 		</h5>
         <h6 class="t-center size32 m-l-r-auto p-t-50" style="word-wrap: break-word; width: 100%;">
-            Rate: 5
+            Rate:
+            <i class="fa fa-star{% if product.rate < 1 %}-o empty{% endif %}"></i>
+            <i class="fa fa-star{% if product.rate < 2 %}-o empty{% endif %}"></i>
+            <i class="fa fa-star{% if product.rate < 3 %}-o empty{% endif %}"></i>
+            <i class="fa fa-star{% if product.rate < 4 %}-o empty{% endif %}"></i>
+            <i class="fa fa-star{% if product.rate < 5 %}-o empty{% endif %}"></i>
 		</h6>
-        <div class="text-blo4 p-t-70" style="max-width: 60%; margin: auto">
-            <hr>
-            <p style="width: 100%; padding-bottom: 25px; padding-top: 25px; text-align: left">
-                by Admin
-                <span class="m-r-6 m-l-4">|</span>
-                28 December, 2018
-                <span class="m-r-6 m-l-4">|</span>
-                Cooking, Food
-            </p>
-            <p style="width: 100%; padding-bottom: 25px; text-align: left">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget mi sem. Nulla facilisi. Sed ultricies eros a nibh tempus, in sodales mi vestibulum. Nullam quis dui ac nisl ultrices euismod et sit amet urna. Morbi semper sapien quis ex tempor, sit amet scelerisque eros rhoncus. Cras scelerisque auctor gravida. Nunc fermentum luctus rhoncus. Nulla vulputate fermentum convallis. In quis pellentesque tortor. Cras metus nibh, gravida vitae ante vel, finibus semper tellus. Nulla vel tincidunt magna. Morbi tempor velit lectus, eu commodo quam volutpat vitae.
-            </p>
+        <div class="p-t-70">
+            {% for rs in comments %}
+                <div class="text-blo4" style="max-width: 60%; margin: auto">
+                    <hr>
+                    <p style="width: 100%; padding-bottom: 25px; padding-top: 25px; text-align: left">
+                        By {{ rs.user.first_name }}
+                        <span class="m-r-6 m-l-4">|</span>
+                        {{ rs.create_at }}
+                        <span class="m-r-6 m-l-4">|</span>
+                        {{ rs.subject }}
+                        <span class="m-r-6 m-l-4">|</span>
+                        <i class="fa fa-star{% if rs.rate < 1 %}-o empty{% endif %}"></i>
+                        <i class="fa fa-star{% if rs.rate < 2 %}-o empty{% endif %}"></i>
+                        <i class="fa fa-star{% if rs.rate < 3 %}-o empty{% endif %}"></i>
+                        <i class="fa fa-star{% if rs.rate < 4 %}-o empty{% endif %}"></i>
+                        <i class="fa fa-star{% if rs.rate < 5 %}-o empty{% endif %}"></i>
+                    </p>
+                    <p style="width: 100%; padding-bottom: 25px; text-align: left">
+                        {{ rs.comment }}
+                    </p>
+                </div>
+            {% endfor %}
         </div>
 	</section>
 
 	<section class="section-contact bg1-pattern p-t-90 p-b-113">
 		<div class="container">
+
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}" role="alert">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+
             <div class="m-l-r-auto" style="display: flex; flex-wrap: wrap;">
 
-                <form class="wrap-form-reservation size22 m-l-r-auto" method="post" action="">
+                <form class="wrap-form-reservation size22 m-l-r-auto" method="POST" action="/product/addcomment/{{ product.id }}">
+                    {% csrf_token %}
                     <div class="row">
                         <h4 class="t-center txt33 p-b-14" style="width: 100%">
                             Leave a Comment
@@ -97,19 +122,10 @@
 
                         <div class="col-md-4">
                             <span class="txt9">
-                                Name
+                                Subject
                             </span>
                             <div class="wrap-inputemail size12 bo2 bo-rad-10 m-t-3 m-b-23">
-                                <input class="bo-rad-10 sizefull txt10 p-l-20" type="text" name="name" placeholder="Name & Surname *">
-                            </div>
-                        </div>
-
-                        <div class="col-md-4">
-                            <span class="txt9">
-                                Email
-                            </span>
-                            <div class="wrap-inputemail size12 bo2 bo-rad-10 m-t-3 m-b-23">
-                                <input class="bo-rad-10 sizefull txt10 p-l-20" type="text" name="email" placeholder="E-mail Address *">
+                                <input class="bo-rad-10 sizefull txt10 p-l-20" type="text" name="subject" placeholder="Subject *">
                             </div>
                         </div>
 
@@ -118,8 +134,21 @@
                                 Rate
                             </span>
                             <div class="wrap-inputemail size12 bo2 bo-rad-10 m-t-3 m-b-23">
-                                <div class="bo-rad-10 sizefull txt10 p-t-13" style="padding-left: 20px">
-                                    1 2 3 4 5
+                                <div class="ratecontainer">
+                                    <div class="feedback">
+                                        <div class="rating">
+                                            <input type="radio" name="rate" id="rating-5" value="5">
+                                            <label for="rating-5"></label>
+                                            <input type="radio" name="rate" id="rating-4" value="4">
+                                            <label for="rating-4"></label>
+                                            <input type="radio" name="rate" id="rating-3" value="3">
+                                            <label for="rating-3"></label>
+                                            <input type="radio" name="rate" id="rating-2" value="2">
+                                            <label for="rating-2"></label>
+                                            <input type="radio" name="rate" id="rating-1" value="1">
+                                            <label for="rating-1"></label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -127,16 +156,20 @@
                         <div class="col-12">
                             <span class="txt9">
                                 Comment
-                            </span>
-                            <textarea class="bo-rad-10 size35 bo2 txt10 p-l-20 p-t-15 m-b-10 m-t-3" name="commentent" placeholder="Your Comment..."></textarea>
+                                </span>
+                                <textarea class="bo-rad-10 size35 bo2 txt10 p-l-20 p-t-15 m-b-10 m-t-3" name="comment" placeholder="Your Comment..."></textarea>
                         </div>
                     </div>
+                    {% if user.id is not None %}
                     <div class="wrap-btn-booking flex-c-m m-t-13">
                         <!-- Button3 -->
                         <button type="submit" class="btn3 flex-c-m size36 txt11 trans-0-4" style="padding-left: 10px; padding-right: 10px;">
                             Post Comment
                         </button>
                     </div>
+                    {% else %}
+                        For Write a Comment, Please Login!
+                    {% endif %}
                 </form>
 
             </div>

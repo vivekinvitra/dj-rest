@@ -1,18 +1,26 @@
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
+from django.db.models import Avg
 
 from home.models import Setting, ContactForm, ContactFormMessage
-from product.models import Product, Category, Images
+from product.models import Product, Category, Images, Comment
 
 
 def index(request):
     sliderData = Product.objects.all()[:3]
     setting = Setting.objects.get(pk=1)
     category = Category.objects.all()
-    ourfavorites = Product.objects.all()[:3]
-    ourlatestdeliciousfoods = Product.objects.all().order_by('-id')[:3]
-    context = {'setting': setting, 'category': category, 'page': 'home', 'sliderData': sliderData, 'ourfavorites': ourfavorites, 'ourlatestdeliciousfoods': ourlatestdeliciousfoods}
+    ourFavorites = Product.objects.all()[:3]
+    ourLatestDeliciousFoods = Product.objects.all().order_by('-id')[:3]
+    context = {
+                'setting': setting,
+                'category': category,
+                'page': 'home',
+                'sliderData': sliderData,
+                'ourFavorites': ourFavorites,
+                'ourLatestDeliciousFoods': ourLatestDeliciousFoods,
+    }
     return render(request, 'index.html', context)
 
 
@@ -72,5 +80,6 @@ def product_detail(request, id, slug):
     product = Product.objects.get(pk=id)
     category = Category.objects.all()
     images = Images.objects.filter(product_id=id)
-    context = {'setting': setting, 'category': category, 'product': product, 'images': images}
+    comments = Comment.objects.filter(product_id=id, status='True')
+    context = {'setting': setting, 'category': category, 'product': product, 'images': images, 'comments': comments}
     return render(request, 'product_detail.html', context)

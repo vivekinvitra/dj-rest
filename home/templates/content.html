@@ -44,7 +44,7 @@
                         Our Favorites
                     </span>
 
-                    {% for rs in ourfavorites %}
+                    {% for rs in ourFavorites %}
 					<div class="col-md-4 p-t-30">
 						<!-- Block1 -->
 						<div class="blo1">
@@ -53,8 +53,14 @@
 							</div>
 
 							<div class="wrap-text-blo1 p-t-35">
-								<a href="#"><h4 class="txt5 color0-hov trans-0-4 m-b-13">
+								<a href="/product/{{ rs.id }}/{{ rs.slug }}"><h4 class="txt5 color0-hov trans-0-4 m-b-13">
 									{{ rs.title }}
+                                    <span class="m-r-6 m-l-4">|</span>
+                                    <i class="fa fa-star{% if rs.rate < 1 %}-o empty{% endif %}"></i>
+                                    <i class="fa fa-star{% if rs.rate < 2  %}-o empty{% endif %}"></i>
+                                    <i class="fa fa-star{% if rs.rate < 3  %}-o empty{% endif %}"></i>
+                                    <i class="fa fa-star{% if rs.rate < 4  %}-o empty{% endif %}"></i>
+                                    <i class="fa fa-star{% if rs.rate < 5  %}-o empty{% endif %}"></i>
 								</h4></a>
 
 								<p class="m-b-20" style="word-wrap: break-word; width: 100%; text-align: left;">
@@ -92,7 +98,7 @@
                         Our Latest Delicious Foods
                     </span>
 
-                    {% for rs2 in ourlatestdeliciousfoods %}
+                    {% for rs2 in ourLatestDeliciousFoods %}
                     <div class="col-md-4 p-t-30">
                         <!-- Block1 -->
                         <div class="blo1">
@@ -101,9 +107,17 @@
                             </div>
 
                             <div class="wrap-text-blo1 p-t-35">
-                                <a href="#"><h4 class="txt5 color0-hov trans-0-4 m-b-13">
-                                    {{ rs2.title }}
-                                </h4></a>
+                                <a href="/product/{{ rs2.id }}/{{ rs2.slug }}">
+                                    <h4 class="txt5 color0-hov trans-0-4 m-b-13">
+                                        {{ rs2.title }}
+                                        <span class="m-r-6 m-l-4">|</span>
+                                        <i class="fa fa-star{% if rs2.rate < 1 %}-o empty{% endif %}"></i>
+                                        <i class="fa fa-star{% if rs2.rate < 2  %}-o empty{% endif %}"></i>
+                                        <i class="fa fa-star{% if rs2.rate < 3  %}-o empty{% endif %}"></i>
+                                        <i class="fa fa-star{% if rs2.rate < 4  %}-o empty{% endif %}"></i>
+                                        <i class="fa fa-star{% if rs2.rate < 5  %}-o empty{% endif %}"></i>
+                                    </h4>
+                                </a>
 
                                 <p class="m-b-20" style="word-wrap: break-word; width: 100%; text-align: left;">
                                     {{ rs2.description }}

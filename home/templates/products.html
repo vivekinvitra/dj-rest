@@ -27,7 +27,7 @@
 
                 {% for rs in products %}
                 <!-- Block3 -->
-                <div class="blo3 flex-w flex-col-l-sm m-b-30 m-l-r-auto" style="width: 30%;">
+                <div class="blo3 flex-w flex-col-l-sm m-b-70 m-l-r-auto" style="width: 30%;">
                     <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
                         <a href="/product/{{ rs.id }}/{{ rs.slug }}"><img src="{{ rs.image.url }}" alt="IMG-MENU"></a>
                     </div>
@@ -36,7 +36,13 @@
                         <a href="/product/{{ rs.id }}/{{ rs.slug }}" class="txt21 m-b-3">
                             {{ rs.title }}
                         </a>
-
+                        <div class="txt21 m-b-3">
+                            <i class="fa fa-star{% if rs.rate < 1 %}-o empty{% endif %}"></i>
+                            <i class="fa fa-star{% if rs.rate < 2  %}-o empty{% endif %}"></i>
+                            <i class="fa fa-star{% if rs.rate < 3  %}-o empty{% endif %}"></i>
+                            <i class="fa fa-star{% if rs.rate < 4  %}-o empty{% endif %}"></i>
+                            <i class="fa fa-star{% if rs.rate < 5  %}-o empty{% endif %}"></i>
+                        </div>
                         <span class="txt23" style="word-wrap: break-word; width: 100%; text-align: left;">
                             {{ rs.description }}
                         </span>

@@ -53,13 +53,13 @@
 						<span class="fs-13 color2 m-r-5">
 							<i class="fa fa-twitter" aria-hidden="true"></i>
 						</span>
-						<a href="#" class="txt15">
+						<a href="#">
 							@colorlib
 						</a>
 
 						<p class="txt14 m-b-18">
 							Activello is a good option. It has a slider built into that displays the featured image in the slider.
-							<a href="#" class="txt15">
+							<a href="#">
 								https://buff.ly/2zaSfAQ
 							</a>
 						</p>
@@ -73,13 +73,13 @@
 						<span class="fs-13 color2 m-r-5">
 							<i class="fa fa-twitter" aria-hidden="true"></i>
 						</span>
-						<a href="#" class="txt15">
+						<a href="#">
 							@colorlib
 						</a>
 
 						<p class="txt14 m-b-18">
 							Activello is a good option. It has a slider built into that displays
-							<a href="#" class="txt15">
+							<a href="#">
 								https://buff.ly/2zaSfAQ
 							</a>
 						</p>
@@ -91,14 +91,29 @@
 				</div>
 
                 <!-- Search Box -->
-                <div class="col-sm-6 col-md-4 p-t-50">
-                    <ul class="p-b-70 nav flex-column flex-nowrap overflow-hidden menu-low">
+                <div class="col-sm-6 col-md-4 p-t-50" style="padding-left: 50px;">
+                    <h4 class="txt13 m-b-33">
+						Search
+					</h4>
+                    <ul class="m-b-25">
                         <li class="t-center">
                             <form action="/search/" method="POST">
                                 {% csrf_token %}
-                                <div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4" style="width: 80%; margin-left:auto; margin-right: auto; margin-top: 50px;">
+                                <div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4" style="width: 90%; margin-top: 50px;">
                                     <div class="input-group">
-                                        <input name="query" type="search" placeholder="What're you searching for?" aria-describedby="button-addon1" class="form-control border-0 bg-light">
+                                        {% load mptt_tags %}
+                                        <select name="catid" class="input p-1 bg-light rounded rounded-pill shadow-sm no-scroll" style="font-size: 14px;">
+                                            <option value="0" >All Categories</option>
+                                            {% recursetree category %}
+                                                {% if node.is_leaf_node %} <option value="{{ node.id }}">{{ node.title }}</option>{% endif %}
+                                                {% if not node.is_leaf_node %}
+                                                    <optgroup label="{{ node.title }}">
+                                                        {{ children }}
+                                                    </optgroup>
+                                                {% endif %}
+                                            {% endrecursetree %}
+                                        </select>
+                                        <input name="query" type="search" aria-describedby="button-addon1" class="query form-control border-0 bg-light">
                                         <div class="input-group-append">
                                             <button id="button-addon1" type="submit" class="btn btn-link text-primary"><i class="fa fa-search" style="color: #ec1d25;"></i></button>
                                         </div>
@@ -106,12 +121,9 @@
                                 </div>
                             </form>
                         </li>
-
                     </ul>
                 </div>
-
 			</div>
-
 		</div>
 
 		<div class="end-footer bg2">
@@ -131,7 +143,6 @@
 		</div>
 	</footer>
 
-
 	<!-- Back to top -->
 	<div class="btn-back-to-top bg0-hov" id="myBtn">
 		<span class="symbol-btn-back-to-top">
@@ -142,7 +153,25 @@
 	<!-- Container Selection1 -->
 	<div id="dropDownSelect1"></div>
 
-	<script type="text/javascript" src="{% static 'vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+    <script type="text/javascript">
+        $(function() {
+            $(".query").autocomplete({
+                source: "/search_auto/",
+                select: function (event, ui) { //item selected
+                AutoCompleteSelectHandler(event, ui)
+            },
+                minLength: 1,
+            });
+        });
+
+        function AutoCompleteSelectHandler(event, ui)
+        {
+            var selectedObj = ui.item;
+        }
+
+    </script>
+
+
 	<script type="text/javascript" src="{% static 'vendor/animsition/js/animsition.min.js' %}"></script>
 	<script type="text/javascript" src="{% static 'vendor/bootstrap/js/popper.js' %}"></script>
 	<script type="text/javascript" src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>

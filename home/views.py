@@ -1,7 +1,8 @@
+import json
+
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
-from django.db.models import Avg
 
 from home.forms import SearchForm
 from home.models import Setting, ContactForm, ContactFormMessage
@@ -12,15 +13,15 @@ def index(request):
     sliderData = Product.objects.all()[:3]
     setting = Setting.objects.get(pk=1)
     category = Category.objects.all()
-    ourFavorites = Product.objects.all()[:3]
+    ourFavorites = Product.objects.all().order_by('-rate')[:3]
     ourLatestDeliciousFoods = Product.objects.all().order_by('-id')[:3]
     context = {
-                'setting': setting,
-                'category': category,
-                'page': 'home',
-                'sliderData': sliderData,
-                'ourFavorites': ourFavorites,
-                'ourLatestDeliciousFoods': ourLatestDeliciousFoods,
+        'setting': setting,
+        'category': category,
+        'page': 'home',
+        'sliderData': sliderData,
+        'ourFavorites': ourFavorites,
+        'ourLatestDeliciousFoods': ourLatestDeliciousFoods,
     }
     return render(request, 'index.html', context)
 
@@ -93,7 +94,27 @@ def product_search(request):
         if form.is_valid():
             category = Category.objects.all()
             query = form.cleaned_data['query']
-            products = Product.objects.filter(title__icontains=query)
+            catid = form.cleaned_data['catid']
+            if catid == 0:
+                products = Product.objects.filter(title__icontains=query)
+            else:
+                products = Product.objects.filter(title__icontains=query, category_id=catid)
             context = {'setting': setting, 'products': products, 'category': category}
             return render(request, 'product_search.html', context)
     return HttpResponseRedirect('/')
+
+
+def product_search_auto(request):
+    if request.is_ajax():
+        q = request.GET.get('term', '')
+        product = Product.objects.filter(title__icontains=q)
+        results = []
+        for rs in product:
+            product_json = {}
+            product_json = rs.title
+            results.append(product_json)
+        data = json.dumps(results)
+    else:
+        data = 'fail'
+    mimetype = 'application/json'
+    return HttpResponse(data, mimetype)

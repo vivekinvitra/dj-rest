@@ -21,39 +21,46 @@
 		</h2>
 	</section>
 
-	<section class="bg2-pattern p-t-116 p-b-110 t-center p-l-15 p-r-15">
+	<section class="bg2-pattern p-t-116 p-b-110 p-l-15 p-r-15">
 		<div class="container">
-            <div class="m-l-r-auto" style="display: flex; flex-wrap: wrap;">
+            <div class="row">
+                <span class="tit2 t-center" style="width: 100%; padding-bottom: 50px;">
+                    Our Delicious Foods
+                </span>
 
                 {% for rs in products %}
-                <!-- Block3 -->
-                <div class="blo3 flex-w flex-col-l-sm m-b-70 m-l-r-auto" style="width: 30%;">
-                    <div class="pic-blo3 size20 bo-rad-10 hov-img-zoom m-r-28">
-                        <a href="/product/{{ rs.id }}/{{ rs.slug }}"><img src="{{ rs.image.url }}" alt="IMG-MENU"></a>
-                    </div>
-
-                    <div class="text-blo3 size21 flex-col-l-m">
-                        <a href="/product/{{ rs.id }}/{{ rs.slug }}" class="txt21 m-b-3">
-                            {{ rs.title }}
-                        </a>
-                        <div class="txt21 m-b-3">
-                            <i class="fa fa-star{% if rs.rate < 1 %}-o empty{% endif %}"></i>
-                            <i class="fa fa-star{% if rs.rate < 2  %}-o empty{% endif %}"></i>
-                            <i class="fa fa-star{% if rs.rate < 3  %}-o empty{% endif %}"></i>
-                            <i class="fa fa-star{% if rs.rate < 4  %}-o empty{% endif %}"></i>
-                            <i class="fa fa-star{% if rs.rate < 5  %}-o empty{% endif %}"></i>
+                <div class="col-md-4 p-t-30">
+                    <!-- Block1 -->
+                    <div class="blo1">
+                        <div class="wrap-pic-blo1 bo-rad-10 hov-img-zoom" style="height: 350px">
+                            <a href="/product/{{ rs.id }}/{{ rs.slug }}"><img src="{{ rs.image.url }}" alt="IMG-INTRO"></a>
                         </div>
-                        <span class="txt23" style="word-wrap: break-word; width: 100%; text-align: left;">
-                            {{ rs.description }}
-                        </span>
 
-                        <span class="txt22 m-t-20">
-                            ${{ rs.price }}
-                        </span>
+                        <div class="wrap-text-blo1 p-t-35">
+                            <a href="/product/{{ rs.id }}/{{ rs.slug }}">
+                                <h4 class="txt5 color0-hov trans-0-4 m-b-13">
+                                    {{ rs.title }}
+                                    <span class="m-r-6 m-l-4">|</span>
+                                    <i class="fa fa-star{% if rs.rate < 1 %}-o empty{% endif %}"></i>
+                                    <i class="fa fa-star{% if rs.rate < 2  %}-o empty{% endif %}"></i>
+                                    <i class="fa fa-star{% if rs.rate < 3  %}-o empty{% endif %}"></i>
+                                    <i class="fa fa-star{% if rs.rate < 4  %}-o empty{% endif %}"></i>
+                                    <i class="fa fa-star{% if rs.rate < 5  %}-o empty{% endif %}"></i>
+                                </h4>
+                            </a>
+
+                            <p class="m-b-20" style="word-wrap: break-word; width: 100%; text-align: left;">
+                                {{ rs.description }}
+                            </p>
+
+                            <a href="/product/{{ rs.id }}/{{ rs.slug }}" class="txt4">
+                                Learn More
+                                <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
                 {% endfor %}
-
             </div>
 		</div>
 	</section>

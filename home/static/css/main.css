@@ -175,6 +175,17 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   padding-left: 0;
 }
 
+.no-scroll::-webkit-scrollbar {display:none;}
+.no-scroll::-moz-scrollbar {display:none;}
+.no-scroll::-o-scrollbar {display:none;}
+.no-scroll::-google-ms-scrollbar {display:none;}
+.no-scroll::-khtml-scrollbar {display:none;}
+
+.ui-autocomplete
+{
+    z-index:1250 !important;
+}
+
 /*[ RESTYLE TAG ]
 ///////////////////////////////////////////////////////////
 */

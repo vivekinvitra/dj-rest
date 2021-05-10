@@ -22,11 +22,8 @@
     <list default="true" id="f73adcd6-3c7a-4275-a314-e4b2fb1ad1f7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/home/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/home/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/home/templates/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/home/templates/header.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/home/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/home/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python_django_restaurant_website_project/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/python_django_restaurant_website_project/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python_django_restaurant_website_project/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/python_django_restaurant_website_project/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/templates/user_profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/user/templates/user_profile.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -145,7 +142,7 @@
       <workItem from="1620308282902" duration="30069000" />
       <workItem from="1620409126909" duration="19336000" />
       <workItem from="1620589059686" duration="8760000" />
-      <workItem from="1620636298096" duration="28609000" />
+      <workItem from="1620636298096" duration="29655000" />
     </task>
     <servers />
   </component>

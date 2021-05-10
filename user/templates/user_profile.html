@@ -1,6 +1,6 @@
 {% extends "homebase.html" %}
 
-{% block title %} {{ profile.user_name }} Profile {% endblock %}
+{% block title %} {{ profile.user.first_name }} {{ profile.user.last_name }}'s Profile {% endblock %}
 {% block keywords %} {{ setting.keywords }} {% endblock %}
 {% block description %} {{ setting.description }} {% endblock %}
 

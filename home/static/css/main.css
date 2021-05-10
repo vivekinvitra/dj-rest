@@ -610,7 +610,11 @@ input[type="date" i] {
   box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
 }
 
-.header-fixed .menubutton{
+.header-fixed .menu-button{
+  color: #222222;
+}
+
+.header-fixed .user-button{
   color: #222222;
 }
 
@@ -788,13 +792,35 @@ input[type="date" i] {
   border-bottom: 2px solid #ec1d25;
 }
 
-.menubutton{
+.user-button{
+  -webkit-transition: color 250ms ease-out;
+  -moz-transition: color 250ms ease-out;
+  -o-transition: color 250ms ease-out;
+  transition: color 250ms ease-out;
+  text-transform: uppercase;
+  color: white;
+  margin-left: 25px;
+}
+
+.user-button:hover{
+  -webkit-transition: color 250ms ease-out;
+  -moz-transition: color 250ms ease-out;
+  -o-transition: color 250ms ease-out;
+  transition: color 250ms ease-out;
+  color: #ec1d25;
+}
+
+.user-button-dropdown-items{
+  color: #222222;
+}
+
+.menu-button{
   color: white;
   margin-left: 25px;
   border-bottom: 2px solid #ec1d25;
 }
 
-.menubutton:hover{
+.menu-button:hover{
   color: #ec1d25;
 }
 

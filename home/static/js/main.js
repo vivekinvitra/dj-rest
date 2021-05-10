@@ -135,7 +135,7 @@
     ===========================================================*/
     $('body').append('<div class="overlay-sidebar trans-0-4"></div>');
     var ovlSideBar = $('.overlay-sidebar');
-    var btnShowSidebar = $('.menubutton');
+    var btnShowSidebar = $('.menu-button');
     var btnHideSidebar = $('.btn-hide-sidebar');
     var sidebar = $('.sidebar');
 

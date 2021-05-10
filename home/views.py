@@ -6,7 +6,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
 from home.forms import SearchForm, SignUpForm
-from home.models import Setting, ContactForm, ContactFormMessage
+from home.models import Setting, ContactForm, ContactFormMessage, UserProfile
 from product.models import Product, Category, Images, Comment
 
 
@@ -16,6 +16,11 @@ def index(request):
     category = Category.objects.all()
     ourFavorites = Product.objects.all().order_by('-rate')[:3]
     ourLatestDeliciousFoods = Product.objects.all().order_by('-id')[:3]
+    current_user = request.user
+    if current_user.id is not None:
+        profile = UserProfile.objects.get(user_id=current_user.id)
+    else:
+        profile = None
     context = {
         'setting': setting,
         'category': category,
@@ -23,6 +28,7 @@ def index(request):
         'sliderData': sliderData,
         'ourFavorites': ourFavorites,
         'ourLatestDeliciousFoods': ourLatestDeliciousFoods,
+        'profile': profile,
     }
     return render(request, 'index.html', context)
 
@@ -30,14 +36,24 @@ def index(request):
 def aboutus(request):
     setting = Setting.objects.get(pk=1)
     category = Category.objects.all()
-    context = {'setting': setting, 'category': category, 'page': 'aboutus'}
+    current_user = request.user
+    if current_user.id is not None:
+        profile = UserProfile.objects.get(user_id=current_user.id)
+    else:
+        profile = None
+    context = {'setting': setting, 'category': category, 'profile': profile, 'page': 'aboutus'}
     return render(request, 'aboutus.html', context)
 
 
 def references(request):
     setting = Setting.objects.get(pk=1)
     category = Category.objects.all()
-    context = {'setting': setting, 'category': category, 'page': 'references'}
+    current_user = request.user
+    if current_user.id is not None:
+        profile = UserProfile.objects.get(user_id=current_user.id)
+    else:
+        profile = None
+    context = {'setting': setting, 'category': category, 'profile': profile, 'page': 'references'}
     return render(request, 'references.html', context)
 
 
@@ -57,15 +73,25 @@ def contact(request):
 
     setting = Setting.objects.get(pk=1)
     category = Category.objects.all()
+    current_user = request.user
+    if current_user.id is not None:
+        profile = UserProfile.objects.get(user_id=current_user.id)
+    else:
+        profile = None
     form = ContactForm()
-    context = {'setting': setting, 'category': category, 'form': form}
+    context = {'setting': setting, 'category': category, 'profile': profile, 'form': form}
     return render(request, 'contact.html', context)
 
 
 def faq(request):
     setting = Setting.objects.get(pk=1)
     category = Category.objects.all()
-    context = {'setting': setting, 'category': category, 'page': 'faq'}
+    current_user = request.user
+    if current_user.id is not None:
+        profile = UserProfile.objects.get(user_id=current_user.id)
+    else:
+        profile = None
+    context = {'setting': setting, 'category': category, 'profile': profile, 'page': 'faq'}
     return render(request, 'faq.html', context)
 
 
@@ -73,8 +99,13 @@ def category_products(request, id, slug):
     setting = Setting.objects.get(pk=1)
     products = Product.objects.filter(category_id=id)
     category = Category.objects.all()
+    current_user = request.user
+    if current_user.id is not None:
+        profile = UserProfile.objects.get(user_id=current_user.id)
+    else:
+        profile = None
     categorydata = Category.objects.get(pk=id)
-    context = {'setting': setting, 'products': products, 'category': category, 'categorydata': categorydata}
+    context = {'setting': setting, 'products': products, 'category': category, 'profile': profile, 'categorydata': categorydata}
     return render(request, 'products.html', context)
 
 
@@ -82,14 +113,24 @@ def product_detail(request, id, slug):
     setting = Setting.objects.get(pk=1)
     product = Product.objects.get(pk=id)
     category = Category.objects.all()
+    current_user = request.user
+    if current_user.id is not None:
+        profile = UserProfile.objects.get(user_id=current_user.id)
+    else:
+        profile = None
     images = Images.objects.filter(product_id=id)
     comments = Comment.objects.filter(product_id=id, status='True')
-    context = {'setting': setting, 'category': category, 'product': product, 'images': images, 'comments': comments}
+    context = {'setting': setting, 'category': category, 'product': product, 'profile': profile, 'images': images, 'comments': comments}
     return render(request, 'product_detail.html', context)
 
 
 def product_search(request):
     setting = Setting.objects.get(pk=1)
+    current_user = request.user
+    if current_user.id is not None:
+        profile = UserProfile.objects.get(user_id=current_user.id)
+    else:
+        profile = None
     if request.method == 'POST':
         form = SearchForm(request.POST)
         if form.is_valid():
@@ -100,7 +141,7 @@ def product_search(request):
                 products = Product.objects.filter(title__icontains=query)
             else:
                 products = Product.objects.filter(title__icontains=query, category_id=catid)
-            context = {'setting': setting, 'products': products, 'category': category}
+            context = {'setting': setting, 'products': products, 'profile': profile, 'category': category}
             return render(request, 'product_search.html', context)
     return HttpResponseRedirect('/')
 
@@ -139,7 +180,12 @@ def login_view(request):
             return HttpResponseRedirect('/login')
     setting = Setting.objects.get(pk=1)
     category = Category.objects.all()
-    context = {'setting': setting, 'category': category, 'page': 'login'}
+    current_user = request.user
+    if current_user.id is not None:
+        profile = UserProfile.objects.get(user_id=current_user.id)
+    else:
+        profile = None
+    context = {'setting': setting, 'category': category, 'profile': profile, 'page': 'login'}
     return render(request, 'login.html', context)
 
 
@@ -157,5 +203,10 @@ def signup_view(request):
     form = SignUpForm()
     setting = Setting.objects.get(pk=1)
     category = Category.objects.all()
-    context = {'setting': setting, 'category': category, 'form': form, 'page': 'login'}
+    current_user = request.user
+    if current_user.id is not None:
+        profile = UserProfile.objects.get(user_id=current_user.id)
+    else:
+        profile = None
+    context = {'setting': setting, 'category': category, 'profile': profile, 'form': form, 'page': 'login'}
     return render(request, 'signup.html', context)

@@ -814,6 +814,15 @@ input[type="date" i] {
   color: #222222;
 }
 
+.user-button-dropdown-items:active{
+  color: white;
+}
+
+.dropdown-item:active{
+  background-color: #ec1d25;
+  color: white;
+}
+
 .menu-button{
   color: white;
   margin-left: 25px;

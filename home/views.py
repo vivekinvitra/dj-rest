@@ -164,6 +164,8 @@ def product_search_auto(request):
 
 def logout_view(request):
     logout(request)
+    request.session['table_no'] = None
+    request.session['order_id'] = None
     return HttpResponseRedirect('/')
 
 

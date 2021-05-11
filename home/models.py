@@ -77,6 +77,8 @@ class UserProfile(models.Model):
     city = models.CharField(blank=True, max_length=20)
     country = models.CharField(blank=True, max_length=20)
     image = models.ImageField(blank=True, upload_to='images/users/')
+    create_at = models.DateTimeField(auto_now_add=True)
+    update_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.user.username

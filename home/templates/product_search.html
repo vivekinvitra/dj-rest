@@ -40,12 +40,6 @@
                             <a href="/product/{{ rs.id }}/{{ rs.slug }}">
                                 <h4 class="txt5 color0-hov trans-0-4 m-b-13">
                                     {{ rs.title }}
-                                    <span class="m-r-6 m-l-4">|</span>
-                                    <i class="fa fa-star{% if rs.rate < 1 %}-o empty{% endif %}"></i>
-                                    <i class="fa fa-star{% if rs.rate < 2  %}-o empty{% endif %}"></i>
-                                    <i class="fa fa-star{% if rs.rate < 3  %}-o empty{% endif %}"></i>
-                                    <i class="fa fa-star{% if rs.rate < 4  %}-o empty{% endif %}"></i>
-                                    <i class="fa fa-star{% if rs.rate < 5  %}-o empty{% endif %}"></i>
                                 </h4>
                             </a>
 
@@ -53,8 +47,17 @@
                                 {{ rs.description }}
                             </p>
 
+                            <p class="m-b-20" style="word-wrap: break-word; width: 100%; text-align: left;">
+                                Price: ${{ rs.price }}<span class="m-r-6 m-l-4">|</span> Rate:
+                                <i class="fa fa-star{% if rs.rate < 1 %}-o empty{% endif %}"></i>
+                                <i class="fa fa-star{% if rs.rate < 2  %}-o empty{% endif %}"></i>
+                                <i class="fa fa-star{% if rs.rate < 3  %}-o empty{% endif %}"></i>
+                                <i class="fa fa-star{% if rs.rate < 4  %}-o empty{% endif %}"></i>
+                                <i class="fa fa-star{% if rs.rate < 5  %}-o empty{% endif %}"></i>
+                            </p>
+
                             <a href="/product/{{ rs.id }}/{{ rs.slug }}" class="txt4">
-                                Learn More
+                                Learn More and Order
                                 <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
                             </a>
                         </div>

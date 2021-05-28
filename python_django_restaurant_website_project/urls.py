@@ -19,6 +19,8 @@ from django.contrib import admin
 from django.urls import path, include
 
 from home import views
+from user import views as userviews
+
 
 urlpatterns = [
     path('', include('home.urls')),
@@ -40,9 +42,9 @@ urlpatterns = [
     path('search/', views.product_search, name='product_search'),
     path('search_auto/', views.product_search_auto, name='product_search_auto'),
 
-    path('login/', views.login_view, name='login_view'),
-    path('logout/', views.logout_view, name='logout_view'),
-    path('signup/', views.signup_view, name='signup_view'),
+    path('login/', userviews.login_view, name='login_view'),
+    path('logout/', userviews.logout_view, name='logout_view'),
+    path('signup/', userviews.signup_view, name='signup_view'),
 ]
 
 if settings.DEBUG:

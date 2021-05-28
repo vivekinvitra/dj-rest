@@ -2,8 +2,8 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
-
-from home.models import Setting, UserProfile
+from home.models import Setting
+from user.models import UserProfile
 from order.models import OrderForm, Order, OrderProduct, OrderProductForm
 from product.models import Category, Product
 
@@ -69,7 +69,7 @@ def orderproduct(request, id):
             detail.user_id = data.user_id
             detail.ip = data.ip
             detail.save()
-            messages.success(request, "Your Order has been completed. Thank you ")
+            #messages.success(request, "Your Order has been completed. Thank you ")
             return HttpResponseRedirect('/order/ordercompleted')
         else:
             messages.warning(request, form.errors)

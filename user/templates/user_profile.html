@@ -22,11 +22,21 @@
 	</section>
 
     <div class="container">
+
 			<div class="row ">
 				<div class="col-md-8 col-lg-9">
 					<div class="p-t-80 p-b-124 bo5-r p-r-50 h-full p-r-0-md bo-none-md">
-
 						<div class="blo4 p-b-63">
+
+                            {% if messages %}
+                                {% for message in messages %}
+                                    <div class="alert alert-{{ message.tags }}" role="alert">
+                                        {{ message | safe }}
+                                    </div>
+                                    <div class="p-b-10"></div>
+                                {% endfor %}
+                            {% endif %}
+
                             <table class="table">
                                 <tr>
                                     <th class="t-left" style="border-top: 0px !important;"></th>
@@ -57,8 +67,21 @@
                                     <td class="t-left">{{ profile.country }}</td>
                                 </tr>
                             </table>
-						</div>
 
+                            <div class="wrap-btn-booking flex-c-m m-t-30">
+                                <a href="/user/update" class="m-r-10">
+                                    <button type="submit" class="btn3 flex-c-m size36 txt11 trans-0-4">
+                                        Update Profile
+                                    </button>
+                                </a>
+                                <a href="/user/password" class="m-l-10">
+                                    <button type="submit" class="btn3 flex-c-m size36 txt11 trans-0-4">
+                                        Change Password
+                                    </button>
+                                </a>
+                            </div>
+
+						</div>
 					</div>
 				</div>
 

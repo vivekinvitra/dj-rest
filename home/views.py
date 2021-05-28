@@ -1,12 +1,11 @@
 import json
 
 from django.contrib import messages
-from django.contrib.auth import logout, authenticate, login
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
-
-from home.forms import SearchForm, SignUpForm
-from home.models import Setting, ContactForm, ContactFormMessage, UserProfile
+from home.forms import SearchForm
+from home.models import Setting, ContactForm, ContactFormMessage
+from user.models import UserProfile
 from product.models import Product, Category, Images, Comment
 
 
@@ -160,60 +159,3 @@ def product_search_auto(request):
         data = 'fail'
     mimetype = 'application/json'
     return HttpResponse(data, mimetype)
-
-
-def logout_view(request):
-    logout(request)
-    request.session['table_no'] = None
-    request.session['order_id'] = None
-    return HttpResponseRedirect('/')
-
-
-def login_view(request):
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-            return HttpResponseRedirect('/')
-        else:
-            messages.warning(request, "Your username or password is incorrect.")
-            return HttpResponseRedirect('/login')
-    setting = Setting.objects.get(pk=1)
-    category = Category.objects.all()
-    current_user = request.user
-    if current_user.id is not None:
-        profile = UserProfile.objects.get(user_id=current_user.id)
-    else:
-        profile = None
-    context = {'setting': setting, 'category': category, 'profile': profile, 'page': 'login'}
-    return render(request, 'login.html', context)
-
-
-def signup_view(request):
-    if request.method == 'POST':
-        form = SignUpForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = request.POST['username']
-            password1 = request.POST['password1']
-            user = authenticate(request, username=username, password=password1)
-            login(request, user)
-            current_user = request.user
-            data = UserProfile()
-            data.user_id = current_user.id
-            data.image = "images/users/user.png"
-            data.save()
-            return HttpResponseRedirect('/')
-
-    form = SignUpForm()
-    setting = Setting.objects.get(pk=1)
-    category = Category.objects.all()
-    current_user = request.user
-    if current_user.id is not None:
-        profile = UserProfile.objects.get(user_id=current_user.id)
-    else:
-        profile = None
-    context = {'setting': setting, 'category': category, 'profile': profile, 'form': form, 'page': 'login'}
-    return render(request, 'signup.html', context)

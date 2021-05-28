@@ -33,8 +33,14 @@ class UserUpdateForm(UserChangeForm):
 
 CITY = [
     ('Istanbul', 'Istanbul'),
+    ('Ankara', 'Ankara'),
+    ('Bursa', 'Bursa'),
+    ('London', 'London'),
     ('New York', 'New York'),
     ('Tokyo', 'Tokyo'),
+    ('Paris', 'Paris'),
+    ('Moscow', 'Moscow'),
+    ('Rome', 'Rome'),
 ]
 
 

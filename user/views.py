@@ -3,6 +3,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
+
+from order.models import Order, OrderProduct
 from user.models import UserProfile
 from home.models import Setting
 from product.models import Category
@@ -10,6 +12,7 @@ from django.contrib.auth import logout, authenticate, login, update_session_auth
 from user.forms import SignUpForm, UserUpdateForm, ProfileUpdateForm
 
 
+@login_required(login_url='/login')
 def index(request):
     setting = Setting.objects.get(pk=1)
     category = Category.objects.all()
@@ -141,3 +144,43 @@ def change_password(request):
             'profile': profile,
         }
         return render(request, 'user_password.html', context)
+
+
+@login_required(login_url='/login')
+def orders(request):
+    setting = Setting.objects.get(pk=1)
+    category = Category.objects.all()
+    current_user = request.user
+    if current_user.id is not None:
+        profile = UserProfile.objects.get(user_id=current_user.id)
+    else:
+        profile = None
+    orders = Order.objects.filter(user_id=current_user.id)
+    context = {
+        'orders': orders,
+        'category': category,
+        'setting': setting,
+        'profile': profile,
+    }
+    return render(request, 'user_orders.html', context)
+
+
+@login_required(login_url='/login')
+def orderdetail(request, id):
+    setting = Setting.objects.get(pk=1)
+    category = Category.objects.all()
+    current_user = request.user
+    if current_user.id is not None:
+        profile = UserProfile.objects.get(user_id=current_user.id)
+    else:
+        profile = None
+    order = Order.objects.get(user_id=current_user.id, id=id)
+    orderItems = OrderProduct.objects.filter(order_id=id)
+    context = {
+        'order': order,
+        'orderItems': orderItems,
+        'category': category,
+        'setting': setting,
+        'profile': profile,
+    }
+    return render(request, 'user_order_detail.html', context)

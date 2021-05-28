@@ -22,18 +22,10 @@
     <list default="true" id="f73adcd6-3c7a-4275-a314-e4b2fb1ad1f7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/home/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/home/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/home/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/home/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/home/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/home/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/home/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/user/templates/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/home/templates/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/user/templates/signup.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/home/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/home/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/order/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python_django_restaurant_website_project/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/python_django_restaurant_website_project/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/images/users/user_GTvaAc6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/user/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/user/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/templates/user_profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/user/templates/user_profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/home/templates/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/home/templates/header.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order/templates/ordercompleted.html" beforeDir="false" afterPath="$PROJECT_DIR$/order/templates/ordercompleted.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/user/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/templates/user_panel.html" beforeDir="false" afterPath="$PROJECT_DIR$/user/templates/user_panel.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/user/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/user/views.py" afterDir="false" />
     </list>
@@ -70,7 +62,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/db.sqlite3" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/user/templates" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -84,6 +76,7 @@
       <recent name="D:\Python Django Restaurant Website Project\python-django-restaurant-website-project\user\templates" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Python Django Restaurant Website Project\python-django-restaurant-website-project\user\templates" />
       <recent name="D:\Python Django Restaurant Website Project\python-django-restaurant-website-project\home\templates" />
       <recent name="D:\Python Django Restaurant Website Project\python-django-restaurant-website-project\product" />
     </key>
@@ -162,7 +155,7 @@
       <workItem from="1620734018970" duration="18675000" />
       <workItem from="1620759563551" duration="1058000" />
       <workItem from="1620814946973" duration="1196000" />
-      <workItem from="1622211350176" duration="13248000" />
+      <workItem from="1622211350176" duration="19000000" />
     </task>
     <servers />
   </component>

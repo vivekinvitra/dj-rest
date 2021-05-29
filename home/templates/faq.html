@@ -26,9 +26,41 @@
 			Frequently Asked Questions
 		</span>
 
-		<p class="t-center size32 m-l-r-auto" style="padding-top: 35px">
-
-		</p>
+		<div class="t-center size32 m-l-r-auto m-t-50 accordion" id="accordionFaq" style="padding-top: 35px">
+                {% for rs in faq %}
+                    {% if rs == faq.all|first %}
+                        <div class="card">
+                            <div class="card-header" style="background-color: #212529;" id="heading{{ rs.ordernumber }}">
+                                <h2 class="mb-0">
+                                    <button style="color: white;" class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse{{ rs.ordernumber }}" aria-expanded="true" aria-controls="collapse{{ rs.ordernumber }}">
+                                        {{ rs.question }}
+                                    </button>
+                                </h2>
+                            </div>
+                            <div id="collapse{{ rs.ordernumber }}" class="collapse show" aria-labelledby="heading{{ rs.ordernumber }}" data-parent="#accordionFaq">
+                                <div class="card-body">
+                                    {{ rs.answer }}
+                                </div>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="card">
+                            <div class="card-header" style="background-color: #212529;" id="heading{{ rs.ordernumber }}">
+                                <h2 class="mb-0">
+                                    <button style="color: white;" class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse{{ rs.ordernumber }}" aria-expanded="true" aria-controls="collapse{{ rs.ordernumber }}">
+                                        {{ rs.question }}
+                                    </button>
+                                </h2>
+                            </div>
+                            <div id="collapse{{ rs.ordernumber }}" class="collapse" aria-labelledby="heading{{ rs.ordernumber }}" data-parent="#accordionFaq">
+                                <div class="card-body">
+                                    {{ rs.answer }}
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+		</div>
 	</section>
 
 {% endblock %}

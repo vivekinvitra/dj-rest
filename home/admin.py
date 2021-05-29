@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from home.models import Setting, ContactFormMessage
+from home.models import Setting, ContactFormMessage, FAQ
 
 
 class ContactFormMessageAdmin(admin.ModelAdmin):
@@ -8,5 +8,11 @@ class ContactFormMessageAdmin(admin.ModelAdmin):
     list_filter = ['status']
 
 
+class FAQAdmin(admin.ModelAdmin):
+    list_display = ['ordernumber', 'question', 'answer', 'status']
+    list_filter = ['status']
+
+
 admin.site.register(ContactFormMessage, ContactFormMessageAdmin)
 admin.site.register(Setting)
+admin.site.register(FAQ, FAQAdmin)

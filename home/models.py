@@ -27,7 +27,7 @@ class Setting(models.Model):
     aboutus = RichTextUploadingField()
     contact = RichTextUploadingField()
     references = RichTextUploadingField()
-    status = models.CharField(max_length=10, choices=STATUS)
+    status = models.CharField(max_length=10, choices=STATUS, default='False')
     create_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
 
@@ -65,3 +65,19 @@ class ContactForm(ModelForm):
             'email': TextInput(attrs={'class': 'bo-rad-10 sizefull txt10 p-l-20', 'placeholder': 'E-mail Address '}),
             'message': Textarea(attrs={'class': 'bo-rad-10 size35 bo2 txt10 p-l-20 p-t-15 m-b-10 m-t-3', 'placeholder': 'Your Message...', 'rows': '5'}),
         }
+
+
+class FAQ(models.Model):
+    STATUS = (
+        ('True', 'True'),
+        ('False', 'False'),
+    )
+    ordernumber = models.IntegerField()
+    question = models.CharField(max_length=150)
+    answer = models.TextField()
+    status = models.CharField(max_length=10, choices=STATUS, default='False')
+    create_at = models.DateTimeField(auto_now_add=True)
+    update_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.question

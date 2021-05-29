@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from home.forms import SearchForm
-from home.models import Setting, ContactForm, ContactFormMessage
+from home.models import Setting, ContactForm, ContactFormMessage, FAQ
 from user.models import UserProfile
 from product.models import Product, Category, Images, Comment
 
@@ -86,11 +86,12 @@ def faq(request):
     setting = Setting.objects.get(pk=1)
     category = Category.objects.all()
     current_user = request.user
+    faq = FAQ.objects.all().order_by('ordernumber')
     if current_user.id is not None:
         profile = UserProfile.objects.get(user_id=current_user.id)
     else:
         profile = None
-    context = {'setting': setting, 'category': category, 'profile': profile, 'page': 'faq'}
+    context = {'setting': setting, 'category': category, 'profile': profile, 'faq': faq, 'page': 'faq'}
     return render(request, 'faq.html', context)
 
 

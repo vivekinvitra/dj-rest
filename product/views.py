@@ -25,7 +25,6 @@ def addcomment(request, id):
             data.comment = form.cleaned_data['comment']
             data.rate = form.cleaned_data['rate']
             data.ip = request.META.get('REMOTE_ADDR')
-            data.status = 'New';
             data.save()
             data1 = Product.objects.filter(id=id).first()
             data1.rate = rate_average(id)

@@ -65,11 +65,11 @@
 		</h5>
         <h6 class="t-center size32 m-l-r-auto p-t-50" style="word-wrap: break-word; width: 100%;">
             Rate:
-            <i class="fa fa-star{% if product.rate < 1 %}-o empty{% endif %}"></i>
-            <i class="fa fa-star{% if product.rate < 2 %}-o empty{% endif %}"></i>
-            <i class="fa fa-star{% if product.rate < 3 %}-o empty{% endif %}"></i>
-            <i class="fa fa-star{% if product.rate < 4 %}-o empty{% endif %}"></i>
-            <i class="fa fa-star{% if product.rate < 5 %}-o empty{% endif %}"></i>
+            <i class="fa fa-star{% if product.avaragecomment < 1 %}-o empty{% endif %}"></i>
+            <i class="fa fa-star{% if product.avaragecomment < 2 %}-o empty{% endif %}"></i>
+            <i class="fa fa-star{% if product.avaragecomment < 3 %}-o empty{% endif %}"></i>
+            <i class="fa fa-star{% if product.avaragecomment < 4 %}-o empty{% endif %}"></i>
+            <i class="fa fa-star{% if product.avaragecomment < 5 %}-o empty{% endif %}"></i>
 		</h6>
         {% if user.id is not None %}
             <form class="wrap-form-reservation size22 m-l-r-auto p-t-50" method="post" action="/order/orderproduct/{{ product.id }}">

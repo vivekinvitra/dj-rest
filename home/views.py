@@ -3,6 +3,7 @@ import json
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
+
 from home.forms import SearchForm
 from home.models import Setting, ContactForm, ContactFormMessage, FAQ
 from user.models import UserProfile
@@ -13,7 +14,7 @@ def index(request):
     sliderData = Product.objects.all()[:3]
     setting = Setting.objects.get(pk=1)
     category = Category.objects.all()
-    ourFavorites = Product.objects.all().order_by('-rate')[:3]
+    ourFavorites = sorted(Product.objects.all(), key=lambda i: -i.avaragecomment())[:3]
     ourLatestDeliciousFoods = Product.objects.all().order_by('-id')[:3]
     current_user = request.user
     if current_user.id is not None:

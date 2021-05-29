@@ -1,6 +1,7 @@
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.contrib.auth.models import User
 from django.db import models
+from django.db.models import Avg
 from django.db.models.functions import Coalesce
 
 # Create your models here.
@@ -58,7 +59,6 @@ class Product(models.Model):
     description = models.CharField(max_length=255)
     image = models.ImageField(blank=True, upload_to='images/')
     price = models.FloatField()
-    rate = models.IntegerField()
     detail = RichTextUploadingField()
     status = models.CharField(max_length=10, choices=STATUS, default='False')
     slug = models.SlugField(null=False, unique=True)
@@ -78,6 +78,13 @@ class Product(models.Model):
 
     def get_absolute_url(self):
         return reverse('product_detail', kwargs={'slug': self.slug})
+
+    def avaragecomment(self):
+        comments = Comment.objects.filter(product=self).aggregate(avarage=Avg('rate'))
+        avg = 0
+        if comments["avarage"] is not None:
+            avg = float(comments["avarage"])
+        return avg
 
 
 class Images(models.Model):

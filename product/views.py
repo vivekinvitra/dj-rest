@@ -26,15 +26,7 @@ def addcomment(request, id):
             data.rate = form.cleaned_data['rate']
             data.ip = request.META.get('REMOTE_ADDR')
             data.save()
-            data1 = Product.objects.filter(id=id).first()
-            data1.rate = rate_average(id)
-            data1.save()
             messages.success(request, "Your comment sent successfully. Thanks.")
             return HttpResponseRedirect(url)
     messages.warning(request, "Your comment didn't send.")
     return HttpResponseRedirect(url)
-
-
-def rate_average(id):
-    rateAvg = Comment.objects.filter(product_id=id).aggregate(Avg('rate')).get('rate__avg', 0.00)
-    return rateAvg

@@ -7,7 +7,7 @@ from django.shortcuts import render
 from order.models import Order, OrderProduct
 from user.models import UserProfile
 from home.models import Setting
-from product.models import Category
+from product.models import Category, Comment
 from django.contrib.auth import logout, authenticate, login, update_session_auth_hash
 from user.forms import SignUpForm, UserUpdateForm, ProfileUpdateForm
 
@@ -184,3 +184,31 @@ def orderdetail(request, id):
         'profile': profile,
     }
     return render(request, 'user_order_detail.html', context)
+
+
+@login_required(login_url='/login')
+def comments(request):
+    setting = Setting.objects.get(pk=1)
+    category = Category.objects.all()
+    current_user = request.user
+    if current_user.id is not None:
+        profile = UserProfile.objects.get(user_id=current_user.id)
+    else:
+        profile = None
+    comments = Comment.objects.filter(user_id=current_user.id)
+    context = {
+        'comments': comments,
+        'category': category,
+        'setting': setting,
+        'profile': profile,
+    }
+    return render(request, 'user_comments.html', context)
+
+
+@login_required(login_url='/login')
+def deletecomment(request, id):
+    current_user = request.user
+    Comment.objects.filter(id=id, user_id=current_user.id).delete()
+    messages.success(request, 'Your comment deleted.')
+    return HttpResponseRedirect('/user/comments')
+

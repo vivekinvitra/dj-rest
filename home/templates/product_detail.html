@@ -81,7 +81,7 @@
                                     Table No
                                 </span>
                                 <div class="size12 bo2 bo-rad-10 m-t-3 m-b-23">
-                                    <input class="bo-rad-10 sizefull txt10 p-l-20" type="number" name="table_no" placeholder="0">
+                                    <input class="bo-rad-10 sizefull txt10 p-l-20" type="number" name="table_no" min="1" placeholder="1">
                                 </div>
                             </div>
                             <div class="col-md-2" style="margin-right: auto;">
@@ -89,7 +89,7 @@
                                     Amount
                                 </span>
                                 <div class="size12 bo2 bo-rad-10 m-t-3 m-b-23">
-                                    <input class="bo-rad-10 sizefull txt10 p-l-20" type="number" name="amount" placeholder="0">
+                                    <input class="bo-rad-10 sizefull txt10 p-l-20" type="number" min="1" name="amount" placeholder="1">
                                 </div>
                             </div>
                         {% else %}
@@ -98,7 +98,7 @@
                                 Amount
                             </span>
                             <div class="size12 bo2 bo-rad-10 m-t-3 m-b-23">
-                                <input class="bo-rad-10 sizefull txt10 p-l-20" type="number" name="amount" placeholder="0">
+                                <input class="bo-rad-10 sizefull txt10 p-l-20" type="number" min="1" name="amount" placeholder="1">
                             </div>
                         </div>
                         {% endif %}

@@ -33,6 +33,9 @@
                                 {{ user.first_name }}
                             </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                {% if user.is_superuser %}
+                                <a class="dropdown-item" href="/admin"><span class="user-button-dropdown-items">Admin Panel</span></a>
+                                {% endif %}
                                 <a class="dropdown-item" href="/user"><span class="user-button-dropdown-items">User Profile</span></a>
                                 <a class="dropdown-item" href="/user/orders"><span class="user-button-dropdown-items">My Orders</span></a>
                                 <a class="dropdown-item" href="/user/comments"><span class="user-button-dropdown-items">My Comments</span></a>

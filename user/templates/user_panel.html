@@ -5,6 +5,13 @@
                 User Panel
             </h4>
             <ul>
+                {% if user.is_superuser %}
+                    <li class="bo5-b p-t-8 p-b-8">
+                        <a href="/admin" class="txt27">
+                            Admin Panel
+                        </a>
+                    </li>
+                {% endif %}
                 <li class="bo5-b p-t-8 p-b-8">
                     <a href="/user" class="txt27">
                         User Profile

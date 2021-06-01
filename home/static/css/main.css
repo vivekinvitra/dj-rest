@@ -186,6 +186,10 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
     z-index:1250 !important;
 }
 
+.imageSafe img{
+  border-radius: 10px;
+}
+
 /*[ RESTYLE TAG ]
 ///////////////////////////////////////////////////////////
 */
@@ -833,6 +837,10 @@ input[type="date" i] {
   color: #ec1d25;
 }
 
+.introwelcomeImage{
+  margin-left: 30%;
+}
+
 @media (max-width: 1200px) {
   .main_menu > li {
     margin-left: 4px;
@@ -843,6 +851,10 @@ input[type="date" i] {
 
   .logo {
     height: 45px;
+  }
+
+  .introwelcomeImage{
+    margin-left: 30%;
   }
 }
 
@@ -861,6 +873,10 @@ input[type="date" i] {
 
   .wrap_header {
     height: 100px;
+  }
+
+  .introwelcomeImage{
+    margin-left: auto;
   }
 }
 

@@ -28,14 +28,16 @@
                     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
 
-                            <div class="carousel-item active">
-                              <img class="d-block w-100" src="{{ product.image.url }}" alt="First slide">
-                            </div>
-
                             {% for rs in images %}
-                                <div class="carousel-item">
-                                  <img class="d-block w-100" src="{{ rs.image.url }}" alt="First slide">
-                                </div>
+                                {% if rs == images.all.first %}
+                                    <div class="carousel-item active">
+                                      <img class="d-block w-100" src="{{ rs.image.url }}" alt="First slide">
+                                    </div>
+                                {% else %}
+                                    <div class="carousel-item">
+                                      <img class="d-block w-100" src="{{ rs.image.url }}" alt="First slide">
+                                    </div>
+                                {% endif %}
                             {% endfor %}
 
                             <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -61,7 +63,7 @@
             {{ product.detail|safe }}
 		</p>
         <h5 class="t-center size32 m-l-r-auto p-t-50" style="word-wrap: break-word; width: 100%;">
-            Price: ${{ product.price }}
+            Price: ${{ product.price|floatformat:2 }}
 		</h5>
         <h6 class="t-center size32 m-l-r-auto p-t-50" style="word-wrap: break-word; width: 100%;">
             Rate:
@@ -81,7 +83,7 @@
                                     Table No
                                 </span>
                                 <div class="size12 bo2 bo-rad-10 m-t-3 m-b-23">
-                                    <input class="bo-rad-10 sizefull txt10 p-l-20" type="number" name="table_no" min="1" placeholder="1">
+                                    <input class="bo-rad-10 sizefull txt10 p-l-20" type="number" name="table_no" min="1" value="1" placeholder="1">
                                 </div>
                             </div>
                             <div class="col-md-2" style="margin-right: auto;">
@@ -89,7 +91,7 @@
                                     Amount
                                 </span>
                                 <div class="size12 bo2 bo-rad-10 m-t-3 m-b-23">
-                                    <input class="bo-rad-10 sizefull txt10 p-l-20" type="number" min="1" name="amount" placeholder="1">
+                                    <input class="bo-rad-10 sizefull txt10 p-l-20" type="number" min="1" name="amount" value="1" placeholder="1">
                                 </div>
                             </div>
                         {% else %}
@@ -98,7 +100,7 @@
                                 Amount
                             </span>
                             <div class="size12 bo2 bo-rad-10 m-t-3 m-b-23">
-                                <input class="bo-rad-10 sizefull txt10 p-l-20" type="number" min="1" name="amount" placeholder="1">
+                                <input class="bo-rad-10 sizefull txt10 p-l-20" type="number" min="1" value="1" name="amount" placeholder="1">
                             </div>
                         </div>
                         {% endif %}
@@ -121,22 +123,26 @@
             {% for rs in comments %}
                 <div class="text-blo4" style="max-width: 60%; margin: auto">
                     <hr>
-                    <p style="width: 100%; padding-bottom: 25px; padding-top: 25px; text-align: left">
+                    <img class="rounded-circle m-t-22" height="64px" width="64px" src="{{ rs.user.userprofile.image.url }}"/>
+                    <div style="display: inline-block; float: right; width: 90%; padding-bottom: 25px; padding-top: 25px; text-align: left">
                         By {{ rs.user.first_name }}
                         <span class="m-r-6 m-l-4">|</span>
                         {{ rs.create_at }}
                         <span class="m-r-6 m-l-4">|</span>
                         {{ rs.subject }}
                         <span class="m-r-6 m-l-4">|</span>
-                        <i class="fa fa-star{% if rs.rate < 1 %}-o empty{% endif %}"></i>
-                        <i class="fa fa-star{% if rs.rate < 2 %}-o empty{% endif %}"></i>
-                        <i class="fa fa-star{% if rs.rate < 3 %}-o empty{% endif %}"></i>
-                        <i class="fa fa-star{% if rs.rate < 4 %}-o empty{% endif %}"></i>
-                        <i class="fa fa-star{% if rs.rate < 5 %}-o empty{% endif %}"></i>
-                    </p>
-                    <p style="width: 100%; padding-bottom: 25px; text-align: left">
-                        {{ rs.comment }}
-                    </p>
+                        <div style="display: inline-block">
+                            <i class="fa fa-star{% if rs.rate < 1 %}-o empty{% endif %}"></i>
+                            <i class="fa fa-star{% if rs.rate < 2 %}-o empty{% endif %}"></i>
+                            <i class="fa fa-star{% if rs.rate < 3 %}-o empty{% endif %}"></i>
+                            <i class="fa fa-star{% if rs.rate < 4 %}-o empty{% endif %}"></i>
+                            <i class="fa fa-star{% if rs.rate < 5 %}-o empty{% endif %}"></i>
+                        </div>
+                        <div class="m-t-15"></div>
+                        <span style="width: 100%; padding-bottom: 25px; text-align: left">
+                            {{ rs.comment }}
+                        </span>
+                    </div>
                 </div>
             {% endfor %}
         </div>

@@ -11,11 +11,11 @@ from product.models import Product, Category, Images, Comment
 
 
 def index(request):
-    sliderData = Product.objects.all()[:3]
-    setting = Setting.objects.get(pk=1)
-    category = Category.objects.all()
-    ourFavorites = sorted(Product.objects.all(), key=lambda i: -i.avaragecomment())[:3]
-    ourLatestDeliciousFoods = Product.objects.all().order_by('-id')[:3]
+    sliderData = Product.objects.filter(status='True').order_by('id')[:3]
+    setting = Setting.objects.get(pk=1, status='True')
+    category = Category.objects.filter(status='True')
+    ourFavorites = sorted(Product.objects.filter(status='True'), key=lambda i: -i.avaragecomment())[:3]
+    ourLatestDeliciousFoods = Product.objects.filter(status='True').order_by('-id')[:3]
     current_user = request.user
     if current_user.id is not None:
         profile = UserProfile.objects.get(user_id=current_user.id)
@@ -34,8 +34,8 @@ def index(request):
 
 
 def aboutus(request):
-    setting = Setting.objects.get(pk=1)
-    category = Category.objects.all()
+    setting = Setting.objects.get(pk=1, status='True')
+    category = Category.objects.filter(status='True')
     current_user = request.user
     if current_user.id is not None:
         profile = UserProfile.objects.get(user_id=current_user.id)
@@ -46,8 +46,8 @@ def aboutus(request):
 
 
 def references(request):
-    setting = Setting.objects.get(pk=1)
-    category = Category.objects.all()
+    setting = Setting.objects.get(pk=1, status='True')
+    category = Category.objects.filter(status='True')
     current_user = request.user
     if current_user.id is not None:
         profile = UserProfile.objects.get(user_id=current_user.id)
@@ -67,12 +67,15 @@ def contact(request):
             data.subject = form.cleaned_data['subject']
             data.message = form.cleaned_data['message']
             data.ip = request.META.get('REMOTE_ADDR')
-            data.save()
-            messages.success(request, "Your message sent successfully. Thanks.")
+            if data.name and data.email and data.subject and data.message:
+                messages.success(request, "Your message sent successfully. Thanks.")
+                data.save()
+            else:
+                messages.warning(request, "Please fill the form and try to send again.")
             return HttpResponseRedirect('/contact')
 
-    setting = Setting.objects.get(pk=1)
-    category = Category.objects.all()
+    setting = Setting.objects.get(pk=1, status='True')
+    category = Category.objects.filter(status='True')
     current_user = request.user
     if current_user.id is not None:
         profile = UserProfile.objects.get(user_id=current_user.id)
@@ -84,10 +87,10 @@ def contact(request):
 
 
 def faq(request):
-    setting = Setting.objects.get(pk=1)
-    category = Category.objects.all()
+    setting = Setting.objects.get(pk=1, status='True')
+    category = Category.objects.filter(status='True')
     current_user = request.user
-    faq = FAQ.objects.all().order_by('ordernumber')
+    faq = FAQ.objects.filter(status='True').order_by('ordernumber')
     if current_user.id is not None:
         profile = UserProfile.objects.get(user_id=current_user.id)
     else:
@@ -97,23 +100,23 @@ def faq(request):
 
 
 def category_products(request, id, slug):
-    setting = Setting.objects.get(pk=1)
-    products = Product.objects.filter(category_id=id)
-    category = Category.objects.all()
+    setting = Setting.objects.get(pk=1, status='True')
+    products = Product.objects.filter(category_id=id, status='True')
+    category = Category.objects.filter(status='True')
     current_user = request.user
     if current_user.id is not None:
         profile = UserProfile.objects.get(user_id=current_user.id)
     else:
         profile = None
-    categorydata = Category.objects.get(pk=id)
+    categorydata = Category.objects.get(pk=id, status='True')
     context = {'setting': setting, 'products': products, 'category': category, 'profile': profile, 'categorydata': categorydata}
     return render(request, 'products.html', context)
 
 
 def product_detail(request, id, slug):
-    setting = Setting.objects.get(pk=1)
-    product = Product.objects.get(pk=id)
-    category = Category.objects.all()
+    setting = Setting.objects.get(pk=1, status='True')
+    product = Product.objects.get(pk=id, status='True')
+    category = Category.objects.filter(status='True')
     current_user = request.user
     if current_user.id is not None:
         profile = UserProfile.objects.get(user_id=current_user.id)
@@ -126,7 +129,7 @@ def product_detail(request, id, slug):
 
 
 def product_search(request):
-    setting = Setting.objects.get(pk=1)
+    setting = Setting.objects.get(pk=1, status='True')
     current_user = request.user
     if current_user.id is not None:
         profile = UserProfile.objects.get(user_id=current_user.id)
@@ -135,13 +138,13 @@ def product_search(request):
     if request.method == 'POST':
         form = SearchForm(request.POST)
         if form.is_valid():
-            category = Category.objects.all()
+            category = Category.objects.filter(status='True')
             query = form.cleaned_data['query']
             catid = form.cleaned_data['catid']
             if catid == 0:
-                products = Product.objects.filter(title__icontains=query)
+                products = Product.objects.filter(title__icontains=query, status='True')
             else:
-                products = Product.objects.filter(title__icontains=query, category_id=catid)
+                products = Product.objects.filter(title__icontains=query, category_id=catid, status='True')
             context = {'setting': setting, 'products': products, 'profile': profile, 'category': category}
             return render(request, 'product_search.html', context)
     return HttpResponseRedirect('/')
@@ -150,7 +153,7 @@ def product_search(request):
 def product_search_auto(request):
     if request.is_ajax():
         q = request.GET.get('term', '')
-        product = Product.objects.filter(title__icontains=q)
+        product = Product.objects.filter(title__icontains=q, status='True')
         results = []
         for rs in product:
             product_json = {}

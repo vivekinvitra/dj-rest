@@ -13,8 +13,8 @@ def index(request):
 
 
 def ordercompleted(request):
-    setting = Setting.objects.get(pk=1)
-    category = Category.objects.all()
+    setting = Setting.objects.get(pk=1, status='True')
+    category = Category.objects.filter(status='True')
     current_user = request.user
     if current_user.id is not None:
         profile = UserProfile.objects.get(user_id=current_user.id)
@@ -26,7 +26,10 @@ def ordercompleted(request):
 
 @login_required(login_url='/login')
 def orderproduct(request, id):
-    category = Category.objects.all()
+    if not request.session.get('table_no'):
+        request.session['table_no'] = None
+        request.session['order_id'] = None
+    category = Category.objects.filter(status='True')
     current_user = request.user
     total = 0
     if request.method == 'POST':

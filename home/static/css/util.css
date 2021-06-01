@@ -3631,6 +3631,7 @@ EFFECT   EFFECT   EFFECT   EFFECT   EFFECT   EFFECT  EFFECT
 .hov-img-zoom {
 	display: block;
 	overflow: hidden;
+    text-align: center;
 }
 .hov-img-zoom img{
 	height: 100%;

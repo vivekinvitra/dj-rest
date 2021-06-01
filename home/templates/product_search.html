@@ -49,11 +49,11 @@
 
                             <p class="m-b-20" style="word-wrap: break-word; width: 100%; text-align: left;">
                                 Price: ${{ rs.price }}<span class="m-r-6 m-l-4">|</span> Rate:
-                                <i class="fa fa-star{% if rs.rate < 1 %}-o empty{% endif %}"></i>
-                                <i class="fa fa-star{% if rs.rate < 2  %}-o empty{% endif %}"></i>
-                                <i class="fa fa-star{% if rs.rate < 3  %}-o empty{% endif %}"></i>
-                                <i class="fa fa-star{% if rs.rate < 4  %}-o empty{% endif %}"></i>
-                                <i class="fa fa-star{% if rs.rate < 5  %}-o empty{% endif %}"></i>
+                                <i class="fa fa-star{% if rs.avaragecomment < 1 %}-o empty{% endif %}"></i>
+                                <i class="fa fa-star{% if rs.avaragecomment < 2  %}-o empty{% endif %}"></i>
+                                <i class="fa fa-star{% if rs.avaragecomment < 3  %}-o empty{% endif %}"></i>
+                                <i class="fa fa-star{% if rs.avaragecomment < 4  %}-o empty{% endif %}"></i>
+                                <i class="fa fa-star{% if rs.avaragecomment < 5  %}-o empty{% endif %}"></i>
                             </p>
 
                             <a href="/product/{{ rs.id }}/{{ rs.slug }}" class="txt4">

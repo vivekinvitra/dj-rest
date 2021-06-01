@@ -46,9 +46,9 @@
                                             </a>
                                         </td>
                                         <td class="t-left"><a href="/product/{{ rs.product_id }}/{{ rs.product.slug }}"> {{ rs.product.title }} </a></td>
-                                        <td class="t-left">{{ rs.price }}</td>
+                                        <td class="t-left">${{ rs.price|floatformat:2 }}</td>
                                         <td class="t-left">{{ rs.amount }}</td>
-                                        <td class="t-left">{{ rs.total }}</td>
+                                        <td class="t-left">${{ rs.total|floatformat:2 }}</td>
                                         <td class="t-left">{{ rs.status }}</td>
                                         <td class="t-left">{{ rs.create_at }}</td>
                                     </tr>

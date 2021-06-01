@@ -14,8 +14,8 @@ from user.forms import SignUpForm, UserUpdateForm, ProfileUpdateForm
 
 @login_required(login_url='/login')
 def index(request):
-    setting = Setting.objects.get(pk=1)
-    category = Category.objects.all()
+    setting = Setting.objects.get(pk=1, status='True')
+    category = Category.objects.filter(status='True')
     current_user = request.user
     if current_user.id is not None:
         profile = UserProfile.objects.get(user_id=current_user.id)
@@ -45,8 +45,8 @@ def login_view(request):
         else:
             messages.warning(request, "Your username or password is incorrect.")
             return HttpResponseRedirect('/login')
-    setting = Setting.objects.get(pk=1)
-    category = Category.objects.all()
+    setting = Setting.objects.get(pk=1, status='True')
+    category = Category.objects.filter(status='True')
     current_user = request.user
     if current_user.id is not None:
         profile = UserProfile.objects.get(user_id=current_user.id)
@@ -70,13 +70,11 @@ def signup_view(request):
             data.user_id = current_user.id
             data.image = "images/users/user.png"
             data.save()
-            request.session['table_no'] = None
-            request.session['order_id'] = None
             return HttpResponseRedirect('/')
 
     form = SignUpForm()
-    setting = Setting.objects.get(pk=1)
-    category = Category.objects.all()
+    setting = Setting.objects.get(pk=1, status='True')
+    category = Category.objects.filter(status='True')
     current_user = request.user
     if current_user.id is not None:
         profile = UserProfile.objects.get(user_id=current_user.id)
@@ -97,13 +95,13 @@ def user_update(request):
             messages.success(request, 'Your account has been updated!')
             return HttpResponseRedirect('/user')
     else:
-        setting = Setting.objects.get(pk=1)
+        setting = Setting.objects.get(pk=1, status='True')
         current_user = request.user
         if current_user.id is not None:
             profile = UserProfile.objects.get(user_id=current_user.id)
         else:
             profile = None
-        category = Category.objects.all()
+        category = Category.objects.filter(status='True')
         user_form = UserUpdateForm(instance=request.user)
         profile_form = ProfileUpdateForm(instance=request.user.userprofile)
         context = {
@@ -129,8 +127,8 @@ def change_password(request):
             messages.warning(request, 'Please correct the error below.<br>' + str(form.errors))
             return HttpResponseRedirect('/user/password')
     else:
-        setting = Setting.objects.get(pk=1)
-        category = Category.objects.all()
+        setting = Setting.objects.get(pk=1, status='True')
+        category = Category.objects.filter(status='True')
         current_user = request.user
         if current_user.id is not None:
             profile = UserProfile.objects.get(user_id=current_user.id)
@@ -148,14 +146,14 @@ def change_password(request):
 
 @login_required(login_url='/login')
 def orders(request):
-    setting = Setting.objects.get(pk=1)
-    category = Category.objects.all()
+    setting = Setting.objects.get(pk=1, status='True')
+    category = Category.objects.filter(status='True')
     current_user = request.user
     if current_user.id is not None:
         profile = UserProfile.objects.get(user_id=current_user.id)
     else:
         profile = None
-    orders = Order.objects.filter(user_id=current_user.id)
+    orders = Order.objects.filter(user_id=current_user.id).order_by('-create_at')
     context = {
         'orders': orders,
         'category': category,
@@ -167,15 +165,15 @@ def orders(request):
 
 @login_required(login_url='/login')
 def orderdetail(request, id):
-    setting = Setting.objects.get(pk=1)
-    category = Category.objects.all()
+    setting = Setting.objects.get(pk=1, status='True')
+    category = Category.objects.filter(status='True')
     current_user = request.user
     if current_user.id is not None:
         profile = UserProfile.objects.get(user_id=current_user.id)
     else:
         profile = None
     order = Order.objects.get(user_id=current_user.id, id=id)
-    orderItems = OrderProduct.objects.filter(order_id=id)
+    orderItems = OrderProduct.objects.filter(order_id=id).order_by('-create_at')
     context = {
         'order': order,
         'orderItems': orderItems,
@@ -188,14 +186,14 @@ def orderdetail(request, id):
 
 @login_required(login_url='/login')
 def comments(request):
-    setting = Setting.objects.get(pk=1)
-    category = Category.objects.all()
+    setting = Setting.objects.get(pk=1, status='True')
+    category = Category.objects.filter(status='True')
     current_user = request.user
     if current_user.id is not None:
         profile = UserProfile.objects.get(user_id=current_user.id)
     else:
         profile = None
-    comments = Comment.objects.filter(user_id=current_user.id)
+    comments = Comment.objects.filter(user_id=current_user.id).order_by('-create_at')
     context = {
         'comments': comments,
         'category': category,

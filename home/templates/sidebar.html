@@ -36,22 +36,19 @@
     <ul class="p-b-70 nav flex-column flex-nowrap overflow-hidden">
         {% recursetree category %}
             <li class="t-center nav-item" style="text-transform: uppercase;">
-                <a class="nav-link collapsed" {% if not node.is_leaf_node %} href="#" data-toggle="collapse" data-target="#{{ node.id }}" {% else %} href="/category/{{ node.id }}/{{ node.slug }}" {% endif %}>
+                <a class="nav-link collapsed" {% if not node.is_leaf_node %} href="#" data-toggle="collapse" style="color: #ec1d25;" data-target="#{{ node.id }}" {% else %} href="/category/{{ node.id }}/{{ node.slug }}" {% endif %}>
                     <span>{{ node.title }}</span>
                 </a>
             </li>
             {% if not node.is_leaf_node %}
-                <div class="collapse" id="{{ node.id }}" aria-expanded="false">
-                    <ul>
-                        <li style="text-transform: uppercase;" class="t-center nav-item">
-                            <a href="/category{{ node.id }}//{{ node.slug }}>
-                                <span>{{ children }}</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+                <ul class="collapse" id="{{ node.id }}" aria-expanded="false">
+                    <li style="text-transform: uppercase;" class="t-center nav-item">
+                        <a href="/category{{ node.id }}//{{ node.slug }}">
+                            <span>{{ children }}</span>
+                        </a>
+                    </li>
+                </ul>
             {% endif %}
-
         {% endrecursetree %}
 
         <!-- Search Box -->

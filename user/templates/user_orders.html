@@ -39,7 +39,7 @@
                                 {% for rs in orders %}
                                     <tr>
                                         <td class="t-left">{{ rs.table_no }}</td>
-                                        <td class="t-left">{{ rs.total }}</td>
+                                        <td class="t-left">${{ rs.total|floatformat:2 }}</td>
                                         <td class="t-left">{{ rs.status }}</td>
                                         <td class="t-left">{{ rs.create_at }}</td>
                                         <td class="t-left">
